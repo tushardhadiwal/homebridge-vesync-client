@@ -55,25 +55,82 @@ class LevoitAirPurifier {
 
         this.airPurifierService.getCharacteristic(hap.Characteristic.CurrentAirPurifierState)
             .onGet(() => {
-                return hap.Characteristic.CurrentAirPurifierState.PURIFYING_AIR;
+                if(fanController.isOn()){
+                    return hap.Characteristic.CurrentAirPurifierState.PURIFYING_AIR;
+                }
+                else
+                {
+                    return hap.Characteristic.CurrentAirPurifierState.INACTIVE;
+                }
             });
         
         this.airPurifierService.getCharacteristic(hap.Characteristic.TargetAirPurifierState)
             .onGet(() => {
-                return hap.Characteristic.TargetAirPurifierState.AUTO;
-            });
+                if(fanController.getFanMode()=="auto")
+                {
+                    return hap.Characteristic.TargetAirPurifierState.AUTO;
+
+                }
+                else if(fanController.getFanMode()=="manual"){
+                    return hap.Characteristic.TargetAirPurifierState.MANUAL;
+
+                }
+            })
+            .onSet((state: CharacteristicValue) => {
+
+                if(state===hap.Characteristic.TargetAirPurifierState.AUTO)
+                {
+                    return fanController.setFanMode("auto");
+
+                }
+                else if(state===hap.Characteristic.TargetAirPurifierState.MANUAL){
+
+                    return fanController.setFanMode("manual");;
+                }
+            });;
 
         this.airPurifierService.getCharacteristic(hap.Characteristic.RotationSpeed)
-            .setProps({ minStep: 33, maxValue: 99 })
+            .setProps({ minStep: 25, maxValue: 100 })
             .onGet(() => {
                 const level = fanController.getFanSpeed();
-                return level * 33;
+                return level * 25;
+            })
+            .onSet((value: CharacteristicValue) => {
+
+                if (value <= 25)
+                {
+                    fanController.setFanSpeed(1);
+                }
+                else if (value <=50)
+                {
+                    fanController.setFanSpeed(2);
+                }
+                else if (value <=75)
+                {
+                    fanController.setFanSpeed(3);
+                }
+                else if (value <=100)
+                {
+                    fanController.setFanSpeed(4);
+                }
+                return value;
             });
 
         this.airQualityService = this.getOrAddService(hap.Service.AirQualitySensor);
         this.airQualityService.getCharacteristic(hap.Characteristic.AirQuality)
             .onGet(() => {
-                return hap.Characteristic.AirQuality.POOR;
+                const pm25Density=fanController.getAirQuality();
+                if (pm25Density <= 7) {
+                    return hap.Characteristic.AirQuality.EXCELLENT;
+                    } else if (pm25Density > 7 && pm25Density <= 15) {
+                    return hap.Characteristic.AirQuality.GOOD;
+                    } else if (pm25Density > 15 && pm25Density <= 30) {
+                    return hap.Characteristic.AirQuality.FAIR;
+                    } else if (pm25Density > 30 && pm25Density <= 55) {
+                    return hap.Characteristic.AirQuality.INFERIOR;
+                    } else if (pm25Density > 55) {
+                    return hap.Characteristic.AirQuality.POOR;
+                    }
             });
     }
 

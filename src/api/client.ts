@@ -10,7 +10,7 @@ const request = got.extend({
 export function createBaseBody() {
     return {
         'acceptLanguage': 'en',
-        'timeZone': 'America/Chicago'
+        'timeZone': 'America/Los_Angeles'
     };
 }
 
@@ -19,6 +19,18 @@ export function createAuthBody(client) {
         'accountID': client.accountId,
         'token': client.token
     };
+}
+
+export function createReqHeaders(client) {
+    return {
+        'accept-language': 'en',
+        'accountid': client.accountId,
+        'appversion': '2.5.1',
+        'content-type': 'application/json',
+        'tk': client.token,
+        'tz': 'America/Los_Angeles',
+        'user-agent': 'HomeBridge-Vesync'
+    }
 }
 
 export class VesyncClient {
@@ -49,7 +61,7 @@ export class VesyncClient {
             'appversion': '2.5.1',
             'content-type': 'application/json',
             'tk': this.token,
-            'tz': 'America/New_York',
+            'tz': 'America/Los_Angeles',
             'user-agent': 'HomeBridge-Vesync'
         }
     }
@@ -67,7 +79,7 @@ export class VesyncClient {
                 'devToken': '',
                 'userType': 1,
                 'method': 'login',
-                'timeZone': 'America/New_York',
+                'timeZone': 'America/Los_Angeles',
                 'token': '',
                 'traceId': Date.now()
             },
@@ -89,13 +101,13 @@ export class VesyncClient {
             json: {
                 'acceptLanguage': 'en',
                 'accountID': this.accountId,
-                'appVersion': '1.1',
+                'appVersion': '2.5.1',
                 'method': 'devices',
                 'pageNo': 1,
-                'pageSize': 1000,
-                'phoneBrand': 'HomeBridge-Vesync',
-                'phoneOS': 'HomeBridge-Vesync',
-                'timeZone': 'America/Chicago',
+                'pageSize': 100,
+                'phoneBrand': 'SM N9005',
+                'phoneOS': 'Android',
+                'timeZone': 'America/Los_Angeles',
                 'token': this.token,
                 'traceId': Date.now(),
             }

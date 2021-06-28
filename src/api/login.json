@@ -1,0 +1,36 @@
+// [{
+//   "timeZone": "America/Los_Angeles",
+//   "acceptLanguage": "en",
+//   "appVersion": "2.5.1",
+//   "phoneBrand": "SM N9005",
+//   "phoneOS": "Android",
+//   "traceId": "1624651393",
+//   "email": "tushardhadiwal@gmail.com",
+//   "password": "8572a4f6c6996022039efc87ff7841d3",
+//   "devToken": "",
+//   "userType": "1",
+//   "method": "login"
+// }
+// {'accept-language': 'en', 'accountId': '4307611', 'appVersion': '2.5.1', 'content-type': 'application/json', 'tk': 'r5ND4rBlcDw1PL4_UQ87CFTKwBf6SHjHI2Z7s2zwKavaDFKxag==', 'tz': 'America/Los_Angeles'},
+// {'timeZone': 'America/Los_Angeles', 'acceptLanguage': 'en', 'accountID': '4307611', 'token': 'r5ND4rBlcDw1PL4_UQ87CFTKwBf6SHjHI2Z7s2zwKavaDFKxag==', 'appVersion': '2.5.1', 'phoneBrand': 'SM N9005', 'phoneOS': 'Android', 'traceId': '1624652198', 'method': 'devices', 'pageNo': '1', 'pageSize': '100'}
+// ]
+// {'Content-Type': 'application/json; charset=UTF-8', 'User-Agent': 'VeSync/VeSync 3.0.51(F5321;Android 8.0.0)'}
+{'timeZone': 'America/Los_Angeles', 
+    'acceptLanguage': 'en', 
+    'accountID': '4307611', 
+    'token': 'r5ND4rBlcDw1PL4_UQ87CFTKwBf6SHjHI2Z7s2zwKavaDFKxag==', 
+    'appVersion': '2.5.1', 
+    'phoneBrand': 'SM N9005', 
+    'phoneOS': 'Android', 
+    'traceId': '1624655282', 
+    'method': 'bypassV2', 
+    'debugMode': False, 
+    'deviceRegion': 'US', 
+    'cid': 'vsaq013c1d67425a8ae362b0749b34e8', 
+    'configModule': 'WiFiBTOnboardingNotify_AirPurifier_Core400S_US', 
+    'payload': {'data': {'enabled': False, 'id': 0
+        }, 
+    'method': 'setSwitch', 
+    'source': 'APP'
+    }
+}

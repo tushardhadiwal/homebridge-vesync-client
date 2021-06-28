@@ -1,10 +1,14 @@
-export type OnOrOff = 'on' | 'off';
-export type FanSpeed = 1 | 2 | 3;
+export type FanSpeed = 1 | 2 | 3 | 4;
+export type FanMode = 'auto' | 'manual' | 'sleep';
 
 export interface FanDetails {
-    mode: 'auto' | 'manual' | 'sleep';
-    deviceStatus: OnOrOff;
-    screenStatus: OnOrOff;
+    mode: FanMode;
+    enabled: boolean;
+    display: boolean;
+    child_lock : boolean;
     level: FanSpeed; // fan speed level
-    airQuality: string; // TODO refine type
+    air_quality: number; 
+    air_quality_value: number;
+    filter_life : number;
+
 }
